@@ -5,7 +5,10 @@ response = HTTParty.get('http://worldtimeapi.org/api/timezone/Europe/London')
 setting = JSON.parse(response.body)
 
 if setting
-    puts "The current time in #{setting['timezone']} is #{setting['datetime']}"
+    datetime = setting['utc_datetime']
+    date = datetime.slice(0,10)
+    time = datetime.slice(12,7)
+    puts "The current time in #{setting['timezone']} is #{date} #{time}"
 else
     puts "Error"
 end
